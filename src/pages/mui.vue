@@ -1,15 +1,25 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
 definePage({
   meta: {
     // public: true,
     layout: "muiAdminLayout",
   },
 });
+
+const handleChangePageTodo = () => {
+  router.push("/todo");
+};
 </script>
 
 <template>
   <div class="w-full">
     <h2>mui name</h2>
+    <br />
+    <v-btn @click="handleChangePageTodo">Todo</v-btn>
     <br />
     <v-card
       v-for="item in 60"
