@@ -51,12 +51,14 @@ const navigationItems = ref([
   },
 ]);
 
-const developSubItems = ref([
-  { title: "Develop overview", active: true },
-  { title: "Android", hasDropdown: true },
-  { title: "Flutter" },
-  { title: "Web" },
-]);
+const location = ref("end");
+
+const items = [
+  { title: "Click Me" },
+  { title: "Click Me" },
+  { title: "Click Me" },
+  { title: "Click Me 2" },
+];
 </script>
 <template>
   <v-app class="h-screen overflow-hidden">
@@ -101,11 +103,26 @@ const developSubItems = ref([
             </span>
           </div>
 
-          <div
-            class="mx-1 mt-2 flex flex-col justify-center gap-1 items-center"
-          >
-            <v-icon icon="mdi-theme-light-dark" size="24" />
-          </div>
+          <v-menu :location="location" open-on-hover>
+            <template v-slot:activator="{ props }">
+              <div
+                v-bind="props"
+                class="mx-1 mt-2 flex flex-col justify-center gap-1 items-center"
+              >
+                <v-icon icon="mdi-theme-light-dark" size="24" />
+              </div>
+            </template>
+
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+                :value="index"
+              >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </div>
       </v-navigation-drawer>
 
